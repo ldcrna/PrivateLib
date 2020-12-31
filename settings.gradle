@@ -1,0 +1,3 @@
+include ':HuanLib'
+include ':app'
+rootProject.name = "PenEngineTest"
