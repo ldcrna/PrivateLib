@@ -3,8 +3,8 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven({url 'https://developer.huawei.com/repo/'})
-        maven({url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/'})
+        maven({ url 'https://developer.huawei.com/repo/' })
+        maven({ url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/' })
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.3.1"
@@ -18,12 +18,27 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven({url 'https://developer.huawei.com/repo/'})
-        maven({url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/'})
+        maven({ url 'https://developer.huawei.com/repo/' })
+        maven({ url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/' })
 
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task buildLib() {
+    dependsOn ':HuanLib:assembleRelease'
+    def a = "$rootDir/HuanLib/build/outputs/aar"
+    def b = "$rootDir/app/libs/"
+    doLast {
+        println a
+        println b
+        copy {
+            from a
+            into b
+            include("*.aar")
+        }
+    }
 }

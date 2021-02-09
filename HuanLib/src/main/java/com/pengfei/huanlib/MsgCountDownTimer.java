@@ -3,6 +3,7 @@ package com.pengfei.huanlib;
 import android.widget.TextView;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 /**
  * 短信验证倒计时
@@ -12,7 +13,7 @@ public class MsgCountDownTimer extends android.os.CountDownTimer {
 
     private final TextView view;
 
-    public MsgCountDownTimer(TextView view, long millisInFuture) {
+    public MsgCountDownTimer(@NonNull TextView view, long millisInFuture) {
         super(millisInFuture, 1000);
         this.view = view;
     }
