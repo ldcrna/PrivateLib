@@ -29,7 +29,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.huawei.stylus:penengine:11.0.0.300'
+
 
 
 //    implementation group: 'com.penfei.android',name: 'huanlib',version: '1.00'
