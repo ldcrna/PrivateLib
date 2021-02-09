@@ -2,14 +2,20 @@ package com.pengfei.huanlib;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-public class GlideImageLoader {
+import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
-    public static void showImage(Context context, String url, ImageView tarImg) {
+@Keep
+public class GlideImageLoader {
+    private static final String TAG = "GlideImageLoader";
+
+    public static void showImage(@NonNull Context context, @NonNull String url, @NonNull ImageView tarImg) {
         if (url != null && url.endsWith(".gif")) {
             Glide.with(context).asGif().load(url).into(tarImg);
         } else {
@@ -17,7 +23,11 @@ public class GlideImageLoader {
         }
     }
 
-    public static void showImage(Context context, String url, ImageView tarImg, int redId) {
+    public static void showImage(@NonNull Context context, @NonNull String url, @NonNull ImageView tarImg, int redId) {
+        if (tarImg == null) {
+            Log.e(TAG, "showImage: tarImg == null");
+            return;
+        }
         if (redId == -1) {
             if (!TextUtils.isEmpty(url)) {
                 Glide.with(context).load(url).into(tarImg);
@@ -32,11 +42,16 @@ public class GlideImageLoader {
         }
     }
 
-    //用于banner框架加载图片
-
-    public void displayImage(Context context, Object path, ImageView imageView) {
-        if (path != null && !TextUtils.isEmpty(path.toString()))
+    /**
+     * 用于banner框架加载图片
+     *
+     * @param context context
+     * @param path path
+     * @param imageView imageView
+     */
+    public void displayImage(@NonNull Context context, @NonNull Object path, @NonNull ImageView imageView) {
+        if (path != null && !TextUtils.isEmpty(path.toString())) {
             Glide.with(context).load(path.toString()).into(imageView);
+        }
     }
-
 }
