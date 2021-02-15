@@ -501,13 +501,4 @@ public class TimeUtil {
 
         return  date.getTime();
     }
-
-    /**
-     * 是否是今天
-     * @param timeMillis
-     * @return
-     */
-    public static boolean isToday(long timeMillis) {
-        return false;
-    }
 }

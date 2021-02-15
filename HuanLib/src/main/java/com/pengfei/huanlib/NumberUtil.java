@@ -35,7 +35,7 @@ public class NumberUtil {
         return num;
     }
 
-    public static String formatzeroNum(double data) {
+    public static String formatZeroNum(double data) {
         String num = new DecimalFormat("##0").format(data);
         return num;
     }

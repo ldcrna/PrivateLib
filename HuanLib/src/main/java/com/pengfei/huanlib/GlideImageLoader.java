@@ -15,6 +15,9 @@ import androidx.annotation.NonNull;
 public class GlideImageLoader {
     private static final String TAG = "GlideImageLoader";
 
+    private GlideImageLoader() {
+    }
+
     public static void showImage(@NonNull Context context, @NonNull String url, @NonNull ImageView tarImg) {
         if (url != null && url.endsWith(".gif")) {
             Glide.with(context).asGif().load(url).into(tarImg);
