@@ -1,4 +1,4 @@
-package com.pengfei.huanlib;
+package com.pengfei.huanlib.view;
 
 import android.widget.TextView;
 

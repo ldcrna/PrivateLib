@@ -1,4 +1,4 @@
-package com.pengfei.huanlib;
+package com.pengfei.huanlib.view;
 
 import android.content.Context;
 import android.text.Spannable;
