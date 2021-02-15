@@ -3,8 +3,8 @@ package com.example.penenginetest;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.pengfei.huanlib.SystemUtil;
-import com.pengfei.huanlib.TDevice;
+import com.pengfei.huanlib.system.SystemUtil;
+import com.pengfei.huanlib.system.TDevice;
 
 import androidx.appcompat.app.AppCompatActivity;
 

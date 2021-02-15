@@ -494,11 +494,11 @@ public class TimeUtil {
         }
     }
 
-    public static long getPublicDate(String d, String time){
+    public static long getPublicDate(String d, String time) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         ParsePosition pos = new ParsePosition(0);
         Date date = formatter.parse(d + " " + time, pos);
 
-        return  date.getTime();
+        return date.getTime();
     }
 }

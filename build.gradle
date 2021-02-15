@@ -4,7 +4,23 @@ buildscript {
         google()
         jcenter()
         maven({ url 'https://developer.huawei.com/repo/' })
-        maven({ url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/' })
+        maven {
+            credentials {
+                username 'f1d5fe48e1f640de9ffff47a8696faca_e7bf52d04e104e4d8c1aba3a01968d53'
+                password '6^PyWl3^5I'
+            }
+            url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/'
+        }
+        maven {
+            credentials {
+                username 'f1d5fe48e1f640de9ffff47a8696faca_e7bf52d04e104e4d8c1aba3a01968d53'
+                password '6^PyWl3^5I'
+            }
+            url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_2_0/'
+        }
+        maven {
+            url 'https://repo.huaweicloud.com/repository/maven/'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.3.1"
@@ -19,8 +35,24 @@ allprojects {
         google()
         jcenter()
         maven({ url 'https://developer.huawei.com/repo/' })
-        maven({ url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/' })
 
+        maven {
+            credentials {
+                username 'f1d5fe48e1f640de9ffff47a8696faca_e7bf52d04e104e4d8c1aba3a01968d53'
+                password '6^PyWl3^5I'
+            }
+            url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_1_0/'
+        }
+        maven {
+            credentials {
+                username 'f1d5fe48e1f640de9ffff47a8696faca_e7bf52d04e104e4d8c1aba3a01968d53'
+                password '6^PyWl3^5I'
+            }
+            url 'https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/f1d5fe48e1f640de9ffff47a8696faca_2_0/'
+        }
+        maven {
+            url 'https://repo.huaweicloud.com/repository/maven/'
+        }
     }
 }
 
