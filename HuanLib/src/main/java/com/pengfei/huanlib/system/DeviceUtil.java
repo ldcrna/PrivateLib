@@ -1,5 +1,5 @@
-package com.pengfei.huanlib.system;
 
+package com.pengfei.huanlib.system;
 
 import android.Manifest;
 import android.content.Context;
@@ -11,35 +11,45 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
+import androidx.annotation.Keep;
+import androidx.core.app.ActivityCompat;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.text.DecimalFormat;
 import java.util.Enumeration;
 
-import androidx.annotation.Keep;
-import androidx.core.app.ActivityCompat;
-
+/**
+ * @author wanghuanlong
+ */
 @Keep
-public class TDevice {
+public class DeviceUtil {
     private static final int NETWORK_TYPE_UNAVAILABLE = -1;
-    // private static final int NETWORK_TYPE_MOBILE = -100;
+
+    private static final int NETWORK_TYPE_MOBILE = -100;
+
     private static final int NETWORK_TYPE_WIFI = -101;
 
     private static final int NETWORK_CLASS_WIFI = -101;
+
     private static final int NETWORK_CLASS_UNAVAILABLE = -1;
+
     /**
      * Unknown network class.
      */
     private static final int NETWORK_CLASS_UNKNOWN = 0;
+
     /**
      * Class of broadly defined "2G" networks.
      */
     private static final int NETWORK_CLASS_2_G = 1;
+
     /**
      * Class of broadly defined "3G" networks.
      */
     private static final int NETWORK_CLASS_3_G = 2;
+
     /**
      * Class of broadly defined "4G" networks.
      */
@@ -51,62 +61,77 @@ public class TDevice {
      * Network type is unknown
      */
     public static final int NETWORK_TYPE_UNKNOWN = 0;
+
     /**
      * Current network is GPRS
      */
     public static final int NETWORK_TYPE_GPRS = 1;
+
     /**
      * Current network is EDGE
      */
     public static final int NETWORK_TYPE_EDGE = 2;
+
     /**
      * Current network is UMTS
      */
     public static final int NETWORK_TYPE_UMTS = 3;
+
     /**
      * Current network is CDMA: Either IS95A or IS95B
      */
     public static final int NETWORK_TYPE_CDMA = 4;
+
     /**
      * Current network is EVDO revision 0
      */
     public static final int NETWORK_TYPE_EVDO_0 = 5;
+
     /**
      * Current network is EVDO revision A
      */
     public static final int NETWORK_TYPE_EVDO_A = 6;
+
     /**
      * Current network is 1xRTT
      */
-    public static final int NETWORK_TYPE_1xRTT = 7;
+    public static final int NETWORK_TYPE_1XRTT = 7;
+
     /**
      * Current network is HSDPA
      */
     public static final int NETWORK_TYPE_HSDPA = 8;
+
     /**
      * Current network is HSUPA
      */
     public static final int NETWORK_TYPE_HSUPA = 9;
+
     /**
      * Current network is HSPA
      */
     public static final int NETWORK_TYPE_HSPA = 10;
+
     /**
      * Current network is iDen
      */
     public static final int NETWORK_TYPE_IDEN = 11;
+
     /**
      * Current network is EVDO revision B
      */
     public static final int NETWORK_TYPE_EVDO_B = 12;
+
     /**
      * Current network is LTE
      */
     public static final int NETWORK_TYPE_LTE = 13;
+
     /**
      * Current network is eHRPD
      */
     public static final int NETWORK_TYPE_EHRPD = 14;
+
     /**
      * Current network is HSPA+
      */
@@ -114,16 +139,19 @@ public class TDevice {
 
     private static Context mContext;
 
+    private DeviceUtil() {
+    }
+
     /**
      * 判断是否以WIFI方式联网
      *
      * @return
      */
-    public static boolean isConnectWIFI() {
-        //获取网络连接管理者
-        ConnectivityManager connectionManager = (ConnectivityManager)
-                getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
-        //获取网络的状态信息，有下面三种方式
+    public static boolean isConnectWifi() {
+        // 获取网络连接管理者
+        ConnectivityManager connectionManager =
+            (ConnectivityManager) getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+        // 获取网络的状态信息，有下面三种方式
         NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
     }
@@ -134,8 +162,8 @@ public class TDevice {
      * @return
      */
     public static String getConnectionType() {
-        ConnectivityManager connectionManager = (ConnectivityManager)
-                getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectionManager =
+            (ConnectivityManager) getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
         if (networkInfo != null) {
             return networkInfo.getExtraInfo();
@@ -170,6 +198,8 @@ public class TDevice {
             case NETWORK_CLASS_UNKNOWN:
                 type = "UNKNOWN";
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + networkClass);
         }
         return type;
     }
@@ -177,18 +207,16 @@ public class TDevice {
     private static int getNetworkClass() {
         int networkType = NETWORK_TYPE_UNKNOWN;
         try {
-            final NetworkInfo network = ((ConnectivityManager) getApplication()
-                    .getSystemService(Context.CONNECTIVITY_SERVICE))
+            final NetworkInfo network =
+                ((ConnectivityManager) getApplication().getSystemService(Context.CONNECTIVITY_SERVICE))
                     .getActiveNetworkInfo();
-            if (network != null && network.isAvailable()
-                    && network.isConnected()) {
+            if (network != null && network.isAvailable() && network.isConnected()) {
                 int type = network.getType();
                 if (type == ConnectivityManager.TYPE_WIFI) {
                     networkType = NETWORK_TYPE_WIFI;
                 } else if (type == ConnectivityManager.TYPE_MOBILE) {
-                    TelephonyManager telephonyManager = (TelephonyManager) getApplication()
-                            .getSystemService(
-                                    Context.TELEPHONY_SERVICE);
+                    TelephonyManager telephonyManager =
+                        (TelephonyManager) getApplication().getSystemService(Context.TELEPHONY_SERVICE);
                     networkType = telephonyManager.getNetworkType();
                 }
             } else {
@@ -211,7 +239,7 @@ public class TDevice {
             case NETWORK_TYPE_GPRS:
             case NETWORK_TYPE_EDGE:
             case NETWORK_TYPE_CDMA:
-            case NETWORK_TYPE_1xRTT:
+            case NETWORK_TYPE_1XRTT:
             case NETWORK_TYPE_IDEN:
                 return NETWORK_CLASS_2_G;
             case NETWORK_TYPE_UMTS:
@@ -239,41 +267,39 @@ public class TDevice {
     public static String getProvider() {
         String provider = "未知";
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) getApplication().getSystemService(Context.TELEPHONY_SERVICE);
-            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            TelephonyManager telephonyManager =
+                (TelephonyManager) getApplication().getSystemService(Context.TELEPHONY_SERVICE);
+            if (ActivityCompat.checkSelfPermission(mContext,
+                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
+                // ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
+                // public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                // int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
                 return "获取权限失败";
             }
-            String IMSI = telephonyManager.getSubscriberId();
-            if (IMSI == null) {
-                if (TelephonyManager.SIM_STATE_READY == telephonyManager
-                        .getSimState()) {
+            String iMSI = telephonyManager.getSubscriberId();
+            if (iMSI == null) {
+                if (TelephonyManager.SIM_STATE_READY == telephonyManager.getSimState()) {
                     String operator = telephonyManager.getSimOperator();
                     if (operator != null) {
-                        if (operator.equals("46000")
-                                || operator.equals("46002")
-                                || operator.equals("46007")) {
+                        if ("46000".equals(operator) || "46002".equals(operator) || "46007".equals(operator)) {
                             provider = "中国移动";
-                        } else if (operator.equals("46001")) {
+                        } else if ("46001".equals(operator)) {
                             provider = "中国联通";
-                        } else if (operator.equals("46003")) {
+                        } else if ("46003".equals(operator)) {
                             provider = "中国电信";
                         }
                     }
                 }
             } else {
-                if (IMSI.startsWith("46000") || IMSI.startsWith("46002")
-                        || IMSI.startsWith("46007")) {
+                if (iMSI.startsWith("46000") || iMSI.startsWith("46002") || iMSI.startsWith("46007")) {
                     provider = "中国移动";
-                } else if (IMSI.startsWith("46001")) {
+                } else if (iMSI.startsWith("46001")) {
                     provider = "中国联通";
-                } else if (IMSI.startsWith("46003")) {
+                } else if (iMSI.startsWith("46003")) {
                     provider = "中国电信";
                 }
             }
@@ -283,18 +309,17 @@ public class TDevice {
         return provider;
     }
 
-
     public static String getLocalIpAddress() {
         String ipaddress = null;
         try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
                 NetworkInterface intf = en.nextElement();
-                if (intf.getName().toLowerCase().equals("eth0") || intf.getName().toLowerCase().equals("wlan0")) {
-                    for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                if ("eth0".equals(intf.getName().toLowerCase()) || "wlan0".equals(intf.getName().toLowerCase())) {
+                    for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
                         InetAddress inetAddress = enumIpAddr.nextElement();
                         if (!inetAddress.isLoopbackAddress()) {
                             ipaddress = inetAddress.getHostAddress().toString();
-                            if (!ipaddress.contains("::")) {//ipV6的地址
+                            if (!ipaddress.contains("::")) {
                                 return ipaddress;
                             }
                         }
@@ -356,8 +381,7 @@ public class TDevice {
     public static String getVersionName() {
         try {
             PackageManager packManager = getApplication().getPackageManager();
-            PackageInfo packInfo = packManager.getPackageInfo(
-                    getApplication().getPackageName(), 0);
+            PackageInfo packInfo = packManager.getPackageInfo(getApplication().getPackageName(), 0);
             return packInfo.versionName;
         } catch (Exception e) {
             e.printStackTrace();
@@ -368,8 +392,7 @@ public class TDevice {
     public static int getVersionCode() {
         try {
             PackageManager packManager = getApplication().getPackageManager();
-            PackageInfo packInfo = packManager.getPackageInfo(
-                    getApplication().getPackageName(), 0);
+            PackageInfo packInfo = packManager.getPackageInfo(getApplication().getPackageName(), 0);
             return packInfo.versionCode;
         } catch (Exception e) {
             return 0;
@@ -379,7 +402,6 @@ public class TDevice {
     public static String getBuildName() {
         return Build.VERSION.RELEASE;
     }
-
 
     public static int getStatusBarHeight(Context context) {
         if (context == null) {

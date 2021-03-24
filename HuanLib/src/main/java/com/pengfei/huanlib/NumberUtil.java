@@ -1,11 +1,12 @@
+
 package com.pengfei.huanlib;
+
+import androidx.annotation.Keep;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
-import androidx.annotation.Keep;
 
 /**
  * @author MaTianyu
@@ -44,9 +45,9 @@ public class NumberUtil {
         String str = "";
         int digits = 0;
         String fStr = f + "";
-        int length = fStr.length() ;
+        int length = fStr.length();
         int index = fStr.trim().indexOf(".");
-        if (index < 6 ) {
+        if (index < 6) {
             if (fStr.length() > 7) {
                 digits = 2;
             } else {
@@ -82,7 +83,6 @@ public class NumberUtil {
         return df2.format(f);
     }
 
-
     public static String subtracts(String subt1, String subt2) {
         BigDecimal sub1 = new BigDecimal(subt1);
         BigDecimal sub2 = new BigDecimal(subt2);
@@ -99,11 +99,11 @@ public class NumberUtil {
         return result.toString();
     }
 
-    public static String formatDDate(double data, int count) {
+    public static String formatDate(double data, int count) {
         String num = "0.00";
         if (count == 1) {
             num = new DecimalFormat("##0.0").format(data);
-        }else if (count == 2) {
+        } else if (count == 2) {
             num = new DecimalFormat("##0.00").format(data);
         } else if (count == 3) {
             num = new DecimalFormat("##0.000").format(data);
@@ -113,10 +113,9 @@ public class NumberUtil {
             num = new DecimalFormat("##0.00000").format(data);
         } else if (count == 6) {
             num = new DecimalFormat("##0.000000").format(data);
-        } else{
+        } else {
             num = String.valueOf(data);
         }
         return num;
     }
-
 }

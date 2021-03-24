@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 import androidx.annotation.Keep;
 
+/**
+ * @author wanghuanlong
+ */
 @Keep
 public class RegularUtils {
     /**
@@ -21,7 +24,7 @@ public class RegularUtils {
         return m.matches();
     }
 
-    public static boolean IsSafePassword(String password) {
+    public static boolean isSafePassword(String password) {
         String str = "(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$";
         Pattern p = Pattern.compile(str);
         Matcher m = p.matcher(password);

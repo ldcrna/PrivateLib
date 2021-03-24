@@ -1,6 +1,9 @@
+
 package com.pengfei.huanlib;
 
 import android.text.TextUtils;
+
+import androidx.annotation.Keep;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,22 +13,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import androidx.annotation.Keep;
-
 /**
- * Created by Administrator on 2017/3/23 0023.
+ * @author wanghuanlong
  */
-
 @Keep
 public class TimeUtil {
-
     private TimeUtil() {
     }
 
-    //format
-    public static final String Date_Format_1 = "yy/MM/dd";
-    public static final String Date_Format_2 = "yyyy.MM.dd HH:mm";
-    public static int[] TYPES = new int[]{1, 5, 15, 30, 60, 240, 1440, 10080, 43200};
+    public static final String DATE_FORMAT_1 = "yy/MM/dd";
+
+    public static final String DATE_FORMAT_2 = "yyyy.MM.dd HH:mm";
+
+    public static int[] TYPES = new int[] {1, 5, 15, 30, 60, 240, 1440, 10080, 43200};
 
     public static String getStandardTime(long t) {
         StringBuffer sb = new StringBuffer();
@@ -85,15 +85,14 @@ public class TimeUtil {
         return (int) Math.floor((timestamp / (60 * 60 * 24 * 7 * 30 * 12))) + "年";
     }
 
-
     private static void calculateTime(StringBuffer sb, long time) {
-        long mill = (long) Math.ceil(time / 1000);//秒前
+        long mill = (long) Math.ceil(time / 1000); // 秒前
 
-        long minute = (long) Math.ceil(time / 60 / 1000.0f);// 分钟前
+        long minute = (long) Math.ceil(time / 60 / 1000.0f); // 分钟前
 
-        long hour = (long) Math.ceil(time / 60 / 60 / 1000.0f);// 小时
+        long hour = (long) Math.ceil(time / 60 / 60 / 1000.0f); // 小时
 
-        long day = (long) Math.ceil(time / 24 / 60 / 60 / 1000.0f);// 天前
+        long day = (long) Math.ceil(time / 24 / 60 / 60 / 1000.0f); // 天前
 
         if (day - 1 > 0) {
             sb.append(day + "天");
@@ -118,7 +117,7 @@ public class TimeUtil {
         } else {
             sb.append("刚刚");
         }
-        if (!sb.toString().equals("刚刚")) {
+        if (!"刚刚".equals(sb.toString())) {
             sb.append("前");
         }
     }
@@ -126,20 +125,20 @@ public class TimeUtil {
     public static String getDateToString(String timeStr) {
         long time = Long.parseLong(timeStr);
         Date d = new Date(time * 1000);
-        SimpleDateFormat sf = new SimpleDateFormat(Date_Format_1);
+        SimpleDateFormat sf = new SimpleDateFormat(DATE_FORMAT_1);
         return sf.format(d);
     }
 
     public static Date strToDate(String strDate) {
-        SimpleDateFormat formatter = new SimpleDateFormat(Date_Format_2);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT_2);
         ParsePosition pos = new ParsePosition(0);
         Date date = formatter.parse(strDate, pos);
         return date;
     }
 
-    public static String DateLongToStr(long time) {
+    public static String dateLongToStr(long time) {
         Date date = new Date(time * 1000);
-        SimpleDateFormat formatter = new SimpleDateFormat(Date_Format_2);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT_2);
         return formatter.format(date);
     }
 
@@ -255,19 +254,17 @@ public class TimeUtil {
         return formatter.format(date);
     }
 
-    public static long stringToLong(String strTime, String formatType)
-            throws ParseException {
-        Date date = stringToDate(strTime, formatType); // String类型转成date类型
+    public static long stringToLong(String strTime, String formatType) throws ParseException {
+        Date date = stringToDate(strTime, formatType);  // String类型转成date类型
         if (date == null) {
             return 0;
         } else {
-            long currentTime = dateToLong(date); // date类型转成long类型
+            long currentTime = dateToLong(date);  // date类型转成long类型
             return currentTime;
         }
     }
 
-    public static Date stringToDate(String strTime, String formatType)
-            throws ParseException {
+    public static Date stringToDate(String strTime, String formatType) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(formatType);
         Date date = null;
         date = formatter.parse(strTime);
@@ -282,8 +279,7 @@ public class TimeUtil {
         return new SimpleDateFormat(formatType).format(data);
     }
 
-    public static Date longToDate(long currentTime, String formatType)
-            throws ParseException {
+    public static Date longToDate(long currentTime, String formatType) throws ParseException {
         Date dateOld = new Date(currentTime); // 根据long类型的毫秒数生命一个date类型的时间
         String sDateTime = dateToString(dateOld, formatType); // 把date类型的时间转换为string
         Date date = stringToDate(sDateTime, formatType); // 把String类型转换为Date类型
@@ -297,11 +293,10 @@ public class TimeUtil {
         } else if (dt1.getTime() < dt2.getTime()) {
             System.out.println("dt1在dt2后");
             return -1;
-        } else {//相等
+        } else {// 相等
             return 0;
         }
     }
-
 
     /**
      * 两个时间之间相差距离多少天
@@ -406,7 +401,6 @@ public class TimeUtil {
         return day + "天" + hour + "小时" + min + "分" + sec + "秒";
     }
 
-
     public static boolean isDistanceOneDay(Date one, Date two) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long day = 0;
@@ -475,20 +469,20 @@ public class TimeUtil {
 
         int year1 = cal1.get(Calendar.YEAR);
         int year2 = cal2.get(Calendar.YEAR);
-        if (year1 != year2)   //同一年
+        if (year1 != year2)   // 同一年
         {
             int timeDistance = 0;
             for (int i = year1; i < year2; i++) {
-                if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0)    //闰年
+                if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0)    // 闰年
                 {
                     timeDistance += 366;
-                } else    //不是闰年
+                } else    // 不是闰年
                 {
                     timeDistance += 365;
                 }
             }
             return timeDistance + (day2 - day1);
-        } else    //不同年
+        } else    // 不同年
         {
             return day2 - day1;
         }

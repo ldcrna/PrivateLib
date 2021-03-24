@@ -1,3 +1,4 @@
+
 package com.pengfei.huanlib;
 
 import android.content.Context;
@@ -5,12 +6,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+/**
+ * @author wanghuanlong
+ */
 @Keep
 public class GlideImageLoader {
     private static final String TAG = "GlideImageLoader";

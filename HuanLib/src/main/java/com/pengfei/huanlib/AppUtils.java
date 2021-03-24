@@ -1,3 +1,4 @@
+
 package com.pengfei.huanlib;
 
 import android.app.Activity;
@@ -16,10 +17,13 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import java.util.List;
-
 import androidx.annotation.Keep;
 
+import java.util.List;
+
+/**
+ * @author wanghuanlong
+ */
 @Keep
 public class AppUtils {
     private AppUtils() {
@@ -37,7 +41,7 @@ public class AppUtils {
             }
             if (site >= 0) {
                 style.setSpan(new ForegroundColorSpan(color), site, site + editTextColor.length(),
-                        Spannable.SPAN_INCLUSIVE_INCLUSIVE);   //关键字红色显示
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE); // 关键字红色显示
             }
             return style;
         } catch (Exception e) {
@@ -63,8 +67,9 @@ public class AppUtils {
         try {
             PackageManager pm = context.getPackageManager();
             pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_CONFIGURATIONS);
-            if (pi != null)
+            if (pi != null) {
                 return pi.versionName;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,12 +141,12 @@ public class AppUtils {
         listView.requestLayout();
     }
 
-
-
     public static String getChannel(Context context) {
         String channel = "test";
         try {
-            channel = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData.getString("BaiduMobAd_CHANNEL");
+            channel = context.getPackageManager()
+                .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData
+                    .getString("BaiduMobAd_CHANNEL");
             if (TextUtils.isEmpty(channel)) {
                 return "test";
             }

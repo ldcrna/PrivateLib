@@ -1,7 +1,11 @@
+
 package com.pengfei.huanlib;
 
 import androidx.annotation.Keep;
 
+/**
+ * @author wanghuanlong
+ */
 @Keep
 public class DoubleClickUtils {
     private DoubleClickUtils() {

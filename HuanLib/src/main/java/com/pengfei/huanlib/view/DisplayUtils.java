@@ -1,3 +1,4 @@
+
 package com.pengfei.huanlib.view;
 
 import android.app.Activity;
@@ -61,9 +62,9 @@ public class DisplayUtils {
      * @param cont
      */
     public static void showSoftInput(Activity cont) {
-        cont.getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-                        | WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        cont.getWindow()
+            .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                | WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
     /**
@@ -93,8 +94,7 @@ public class DisplayUtils {
      */
     public static void closeKeyBoard(Activity activity) {
         if (activity != null) {
-            InputMethodManager imm = (InputMethodManager) activity
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             boolean isOpen = imm.isActive();// isOpen若返回true，则表示输入法打开
             if (isOpen) {
                 View currentFocus = activity.getCurrentFocus();
@@ -132,8 +132,7 @@ public class DisplayUtils {
         View view = act.getWindow().peekDecorView();
         if (view != null) {
             // 隐藏虚拟键盘
-            InputMethodManager inputmanger = (InputMethodManager) act
-                    .getSystemService(act.INPUT_METHOD_SERVICE);
+            InputMethodManager inputmanger = (InputMethodManager) act.getSystemService(act.INPUT_METHOD_SERVICE);
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
@@ -143,8 +142,7 @@ public class DisplayUtils {
      */
     public static void switchSoftInputMethod(Activity act) {
         // 方法一(如果输入法在窗口上已经显示，则隐藏，反之则显示)
-        InputMethodManager iMM = (InputMethodManager) act
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager iMM = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
         iMM.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
