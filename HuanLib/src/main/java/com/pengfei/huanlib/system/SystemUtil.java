@@ -1,3 +1,4 @@
+
 package com.pengfei.huanlib.system;
 
 import android.annotation.SuppressLint;
@@ -49,6 +50,7 @@ public class SystemUtil {
             intent.setData(data);
             mActivity.startActivity(intent);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,7 +65,8 @@ public class SystemUtil {
             return;
         }
         try {
-            mActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin=" + qqNum + "&version=1")));
+            mActivity.startActivity(new Intent(Intent.ACTION_VIEW,
+                Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin=" + qqNum + "&version=1")));
         } catch (Exception e) {
             e.printStackTrace();
         }
