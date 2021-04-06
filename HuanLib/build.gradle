@@ -55,3 +55,20 @@ publishing {
     } //publish to filesystem repo
     repositories { maven { url "$buildDir/repo" } }
 }
+
+apply plugin: 'checkstyle'
+checkstyle{
+    toolVersion "8.7"
+}
+task checkstyle(type: Checkstyle) {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/test/**'
+    exclude '**/androidTest/**'
+    configFile new File(rootDir, "checkstyle.xml")
+    classpath = files()
+}
+
+preBuild.dependsOn('checkstyle')
+check.dependsOn('checkstyle')

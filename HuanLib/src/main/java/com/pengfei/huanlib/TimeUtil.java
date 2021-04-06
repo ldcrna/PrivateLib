@@ -293,9 +293,9 @@ public class TimeUtil {
         } else if (dt1.getTime() < dt2.getTime()) {
             System.out.println("dt1在dt2后");
             return -1;
-        } else {// 相等
-            return 0;
         }
+        // 相等
+        return 0;
     }
 
     /**
@@ -424,11 +424,7 @@ public class TimeUtil {
             e.printStackTrace();
         }
 
-        if (day >= 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return day >= 1;
     }
 
     public static String getDistance(Date one, Date two) {
@@ -469,21 +465,21 @@ public class TimeUtil {
 
         int year1 = cal1.get(Calendar.YEAR);
         int year2 = cal2.get(Calendar.YEAR);
-        if (year1 != year2)   // 同一年
-        {
+        // 同一年
+        if (year1 != year2) {
             int timeDistance = 0;
             for (int i = year1; i < year2; i++) {
-                if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0)    // 闰年
-                {
+                // 闰年
+                if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0) {
                     timeDistance += 366;
-                } else    // 不是闰年
-                {
+                } else {
+                    // 不是闰年
                     timeDistance += 365;
                 }
             }
             return timeDistance + (day2 - day1);
-        } else    // 不同年
-        {
+        } else {
+            // 不同年
             return day2 - day1;
         }
     }
