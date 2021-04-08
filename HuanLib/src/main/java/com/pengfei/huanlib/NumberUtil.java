@@ -13,7 +13,7 @@ import java.text.NumberFormat;
  * @date 2014-11-21
  */
 @Keep
-public class NumberUtil {
+public final class NumberUtil {
 
     private NumberUtil() {
     }

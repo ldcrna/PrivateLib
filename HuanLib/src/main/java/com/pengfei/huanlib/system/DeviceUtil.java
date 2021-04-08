@@ -24,7 +24,7 @@ import java.util.Enumeration;
  * @author wanghuanlong
  */
 @Keep
-public class DeviceUtil {
+public final class DeviceUtil {
     private static final int NETWORK_TYPE_UNAVAILABLE = -1;
 
     private static final int NETWORK_TYPE_MOBILE = -100;
@@ -412,7 +412,6 @@ public class DeviceUtil {
         if (resourceId > 0) {
             height = context.getResources().getDimensionPixelSize(resourceId);
         }
-
         return height;
     }
 }

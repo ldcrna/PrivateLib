@@ -8,7 +8,7 @@
     <!-- Checks for Size Violations.  -->
     <!-- 检查文件的长度（行） default max=2500 -->
     <module name="FileLength">
-        <property name="max" value="3000" />
+        <property name="max" value="2000" />
         <property name="severity" value="warning" />
     </module>
 
@@ -54,6 +54,28 @@
 
         <!-- 检查是否导入的包没有使用-->
         <module name="UnusedImports" />
+
+        <module name="JavadocType">
+            <property name="allowUnknownTags" value="true" />
+            <message key="javadoc.missing" value="Class comments: Missing Javadoc comments." />
+        </module>
+
+        <module name="LocalFinalVariableName" />
+        <module name="LocalVariableName" />
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$" />
+            <message key="name.invalidPattern"
+                value="PackageName  ''{0}'' should fit ''{1}''format." />
+        </module>
+        <module name="StaticVariableName" />
+        <module name="TypeName">
+            <property name="severity" value="warning" />
+            <message key="name.invalidPattern" value="name ''{0}'' should fit ''{1}''format." />
+        </module>
+        <module name="MemberName" />
+        <module name="MethodName" />
+        <module name="ParameterName " />
+        <module name="ConstantName" />
 
         <!-- 检查代码块的左花括号的放置位置 -->
         <module name="LeftCurly">
@@ -110,9 +132,11 @@
         <!--检查switch中case后是否加入了跳出语句，例如：return、break、throw、continue -->
         <module name="FallThrough" />
 
-        <!-- Checks the number of parameters of a method or constructor. max default 7个. -->
+        <!-- Checks the number of parameters of a method or constructor. max default 5个. -->
         <module name="ParameterNumber">
-            <property name="max" value="19" />
+            <property name="max" value="5" />
+            <property name="ignoreOverriddenMethods" value="true" />
+            <property name="tokens" value="METHOD_DEF" />
         </module>
 
         <!-- 每行字符数 -->
@@ -122,22 +146,64 @@
 
         <!-- Checks for long methods and constructors. max default 150行. max=300 设置长度300 -->
         <module name="MethodLength">
-            <property name="max" value="200" />
+            <property name="tokens" value="METHOD_DEF" />
+            <property name="max" value="50" />
         </module>
 
+        <module name="MethodParamPad" />
+        <module name="TypecastParenPad" />
+        <module name="NoWhitespaceAfter" />
+        <module name="NoWhitespaceBefore" />
+        <module name="OperatorWrap" />
+        <module name="ParenPad" />
+        <module name="WhitespaceAfter" />
         <!-- ModifierOrder 检查修饰符的顺序，默认是 public,protected,private,abstract,static,final,transient,volatile,synchronized,native -->
         <module name="ModifierOrder" />
 
         <!-- 检查是否有多余的修饰符，例如：接口中的方法不必使用public、abstract修饰  -->
-        <!--<module name="RedundantModifier">-->
-        <!--</module>-->
+        <module name="RedundantModifier" />
+        <module name="AvoidNestedBlocks" />
+        <module name="EmptyBlock" />
+        <module name="LeftCurly" />
+        <module name="NeedBraces" />
+        <module name="RightCurly" />
+
+        <module name="EmptyStatement" />
+        <module name="HiddenField">
+            <property name="tokens" value="VARIABLE_DEF" />
+        </module>
+        <module name="InnerAssignment" />
+        <module name="MissingSwitchDefault" />
+
+        <module name="FinalClass" />
+        <module name="InterfaceIsType" />
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true" />
+            <property name="protectedAllowed" value="true" />
+        </module>
 
         <!--- 字符串比较必须使用 equals() -->
         <module name="StringLiteralEquality" />
 
         <!--限制try代码块的嵌套层数（默认值为1）-->
         <module name="NestedTryDepth">
+            <property name="max" value="3" />
+        </module>
+
+        <module name="NestedForDepth">
             <property name="max" value="2" />
+        </module>
+
+        <module name="NestedIfDepth">
+            <property name="max" value="3" />
+        </module>
+
+        <module name="UncommentedMain">
+            <property name="excludedClasses" value=".*[Application,Test]$" />
+        </module>
+        <module name="Regexp">
+            <property name="format" value="System\.out\.println" />
+            <property name="illegalPattern" value="true" />
         </module>
 
         <!-- 返回个数 -->
@@ -146,7 +212,8 @@
             <property name="maxForVoid" value="15" />
             <property name="format" value="^$" />
         </module>
-
+        <module name="SuperClone" />
+        <module name="SuperFinalize" />
     </module>
 
 </module>

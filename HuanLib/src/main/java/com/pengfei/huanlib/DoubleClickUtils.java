@@ -7,11 +7,11 @@ import androidx.annotation.Keep;
  * @author wanghuanlong
  */
 @Keep
-public class DoubleClickUtils {
+public final class DoubleClickUtils {
     private DoubleClickUtils() {
     }
 
-    public static long downTime;
+    private static long downTime;
 
     public static boolean doubleClickCheck() {
         if (Math.abs(downTime - System.currentTimeMillis()) > 800) {

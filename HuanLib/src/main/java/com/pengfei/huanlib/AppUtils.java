@@ -25,7 +25,8 @@ import java.util.List;
  * @author wanghuanlong
  */
 @Keep
-public class AppUtils {
+public final class AppUtils {
+
     private AppUtils() {
     }
 
@@ -41,7 +42,8 @@ public class AppUtils {
             }
             if (site >= 0) {
                 style.setSpan(new ForegroundColorSpan(color), site, site + editTextColor.length(),
-                    Spannable.SPAN_INCLUSIVE_INCLUSIVE); // 关键字红色显示
+                    // 关键字红色显示
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             }
             return style;
         } catch (Exception e) {

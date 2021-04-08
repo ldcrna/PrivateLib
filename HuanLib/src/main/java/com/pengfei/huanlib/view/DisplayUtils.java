@@ -11,33 +11,39 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.Keep;
+
 import java.io.InputStream;
 import java.lang.reflect.Field;
 
-import androidx.annotation.Keep;
-
+/**
+ * @author wanghuanlong
+ */
 @Keep
-public class DisplayUtils {
+public final class DisplayUtils {
     private DisplayUtils() {
     }
 
     public static int dip2px(Context context, float dipValue) {
-        if (context == null)
+        if (context == null) {
             return 0;
+        }
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
 
     public static int px2dip(Context context, float pxValue) {
-        if (context == null)
+        if (context == null) {
             return 0;
+        }
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
     public static int switch2sp(Context context, int spValue) {
-        if (context == null)
+        if (context == null) {
             return 0;
+        }
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, dm);
     }
@@ -95,7 +101,9 @@ public class DisplayUtils {
     public static void closeKeyBoard(Activity activity) {
         if (activity != null) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            boolean isOpen = imm.isActive();// isOpen若返回true，则表示输入法打开
+
+            // isOpen若返回true，则表示输入法打开
+            boolean isOpen = imm.isActive();
             if (isOpen) {
                 View currentFocus = activity.getCurrentFocus();
                 if (currentFocus != null) {
@@ -108,8 +116,8 @@ public class DisplayUtils {
     /**
      * 获取状态栏的高度
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return 高度
      */
     public static int getStatusHeight(Activity context) {
         int statusBarHeight = 0;
@@ -132,8 +140,8 @@ public class DisplayUtils {
         View view = act.getWindow().peekDecorView();
         if (view != null) {
             // 隐藏虚拟键盘
-            InputMethodManager inputmanger = (InputMethodManager) act.getSystemService(act.INPUT_METHOD_SERVICE);
-            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            InputMethodManager inputManager = (InputMethodManager) act.getSystemService(act.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
@@ -142,8 +150,8 @@ public class DisplayUtils {
      */
     public static void switchSoftInputMethod(Activity act) {
         // 方法一(如果输入法在窗口上已经显示，则隐藏，反之则显示)
-        InputMethodManager iMM = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
-        iMM.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }

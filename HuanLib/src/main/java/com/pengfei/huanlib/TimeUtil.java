@@ -2,6 +2,7 @@
 package com.pengfei.huanlib;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.Keep;
 
@@ -17,15 +18,15 @@ import java.util.TimeZone;
  * @author wanghuanlong
  */
 @Keep
-public class TimeUtil {
+public final class TimeUtil {
     private TimeUtil() {
     }
+
+    private static final String TAG = "TimeUtil";
 
     public static final String DATE_FORMAT_1 = "yy/MM/dd";
 
     public static final String DATE_FORMAT_2 = "yyyy.MM.dd HH:mm";
-
-    public static int[] TYPES = new int[] {1, 5, 15, 30, 60, 240, 1440, 10080, 43200};
 
     public static String getStandardTime(long t) {
         StringBuffer sb = new StringBuffer();
@@ -288,10 +289,10 @@ public class TimeUtil {
 
     public static int compareDate(Date dt1, Date dt2) {
         if (dt1.getTime() > dt2.getTime()) {
-            System.out.println("dt1 在dt2前");
+            Log.i(TAG, "compareDate: dt1 在dt2前");
             return 1;
         } else if (dt1.getTime() < dt2.getTime()) {
-            System.out.println("dt1在dt2后");
+            Log.i(TAG, "compareDate: dt1在dt2后");
             return -1;
         }
         // 相等

@@ -16,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
  * @author wanghuanlong
  */
 @Keep
-public class GlideImageLoader {
+public final class GlideImageLoader {
     private static final String TAG = "GlideImageLoader";
 
     private GlideImageLoader() {
