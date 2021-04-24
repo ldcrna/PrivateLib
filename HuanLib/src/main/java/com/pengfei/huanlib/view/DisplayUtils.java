@@ -76,9 +76,9 @@ public final class DisplayUtils {
     /**
      * 以最省内存的方式读取本地资源的图片
      *
-     * @param context
-     * @param resId
-     * @return
+     * @param context context
+     * @param resId resId
+     * @return Bitmap
      */
     public static Bitmap readBitMap(Context context, int resId) {
         try {
@@ -97,6 +97,8 @@ public final class DisplayUtils {
 
     /**
      * 隐藏键盘
+     * 
+     * @param activity activity
      */
     public static void closeKeyBoard(Activity activity) {
         if (activity != null) {

@@ -11,6 +11,9 @@ public final class DoubleClickUtils {
     private DoubleClickUtils() {
     }
 
+    /**
+     * downTime
+     */
     private static long downTime;
 
     public static boolean doubleClickCheck() {

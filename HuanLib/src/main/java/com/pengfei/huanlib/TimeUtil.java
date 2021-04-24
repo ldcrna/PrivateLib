@@ -24,9 +24,9 @@ public final class TimeUtil {
 
     private static final String TAG = "TimeUtil";
 
-    public static final String DATE_FORMAT_1 = "yy/MM/dd";
+    private static final String DATE_FORMAT_1 = "yy/MM/dd";
 
-    public static final String DATE_FORMAT_2 = "yyyy.MM.dd HH:mm";
+    private static final String DATE_FORMAT_2 = "yyyy.MM.dd HH:mm";
 
     public static String getStandardTime(long t) {
         StringBuffer sb = new StringBuffer();

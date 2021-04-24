@@ -26,10 +26,15 @@ import java.util.List;
  */
 @Keep
 public final class AppUtils {
-
     private AppUtils() {
     }
 
+    /**
+     * @param titleStr titleStr
+     * @param editTextColor editTextColor
+     * @param color color
+     * @return Spannable
+     */
     public static Spannable getSpanString(String titleStr, String editTextColor, int color) {
         SpannableStringBuilder style = new SpannableStringBuilder(titleStr);
         try {
@@ -52,18 +57,37 @@ public final class AppUtils {
         return style;
     }
 
+    /**
+     * 启动 Activity，防止多次点击
+     *
+     * @param mActivity mActivity
+     * @param intent intent
+     */
     public static void startActivity(Activity mActivity, Intent intent) {
         if (DoubleClickUtils.doubleClickCheck()) {
             mActivity.startActivity(intent);
         }
     }
 
+    /**
+     * 启动 Activity，防止多次点击
+     * 
+     * @param mActivity mActivity
+     * @param intent intent
+     * @param requestCode requestCode
+     */
     public static void startActivityForResult(Activity mActivity, Intent intent, int requestCode) {
         if (DoubleClickUtils.doubleClickCheck()) {
             mActivity.startActivityForResult(intent, requestCode);
         }
     }
 
+    /**
+     * 获取版本名
+     * 
+     * @param context context
+     * @return String
+     */
     public static String getAppVersionName(Context context) {
         PackageInfo pi = null;
         try {
@@ -81,6 +105,8 @@ public final class AppUtils {
 
     /**
      * 获取版本号
+     * 
+     * @param context context
      */
     public static int getAppVersionCode(Context context) {
         int versioncode = -1;

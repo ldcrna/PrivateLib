@@ -1,3 +1,4 @@
+
 package com.pengfei.huanlib.view;
 
 import android.widget.TextView;
@@ -7,10 +8,11 @@ import androidx.annotation.NonNull;
 
 /**
  * 短信验证倒计时
+ * 
+ * @author wanghuanlong
  */
 @Keep
 public class MsgCountDownTimer extends android.os.CountDownTimer {
-
     private final TextView view;
 
     public MsgCountDownTimer(@NonNull TextView view, long millisInFuture) {

@@ -17,7 +17,6 @@ import androidx.core.app.ActivityCompat;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.text.DecimalFormat;
 import java.util.Enumeration;
 
 /**
@@ -54,8 +53,6 @@ public final class DeviceUtil {
      * Class of broadly defined "4G" networks.
      */
     private static final int NETWORK_CLASS_4_G = 3;
-
-    private static DecimalFormat df = new DecimalFormat("#.##");
 
     /**
      * Network type is unknown

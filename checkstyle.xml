@@ -56,9 +56,42 @@
         <module name="UnusedImports" />
 
         <module name="JavadocType">
+            <property name="authorFormat" value="\S" />
+            <property name="scope" value="protected" />
+            <property name="tokens" value="CLASS_DEF,INTERFACE_DEF" />
             <property name="allowUnknownTags" value="true" />
             <message key="javadoc.missing" value="Class comments: Missing Javadoc comments." />
         </module>
+
+        <!-- 检查方法的javadoc的注释
+                scope: 可以检查的方法的范围，例如：public只能检查public修饰的方法，private可以检查所有的方法
+                allowMissingParamTags: 是否忽略对参数注释的检查
+                allowMissingThrowsTags: 是否忽略对throws注释的检查
+                allowMissingReturnTag: 是否忽略对return注释的检查 -->
+        <!--        <module name="JavadocMethod">-->
+        <!--            <property name="scope" value="private" />-->
+        <!--            <property name="allowMissingParamTags" value="false" />-->
+        <!--            <property name="allowMissingThrowsTags" value="false" />-->
+        <!--            <property name="allowMissingReturnTag" value="false" />-->
+        <!--            <property name="tokens" value="METHOD_DEF" />-->
+        <!--            <property name="allowUndeclaredRTE" value="true" />-->
+        <!--            <property name="allowThrowsTagsForSubclasses" value="true" />-->
+        <!--            &lt;!&ndash;允许get set 方法没有注释&ndash;&gt;-->
+        <!--            <property name="allowMissingPropertyJavadoc" value="true" />-->
+        <!--        </module>-->
+
+        <!-- 检查类变量的注释
+        scope: 检查变量的范围，例如：public只能检查public修饰的变量，private可以检查所有的变量 -->
+        <module name="JavadocVariable">
+            <property name="scope" value="public" />
+        </module>
+
+        <!--option: 定义左大括号'{'显示位置，eol在同一行显示，nl在下一行显示
+        maxLineLength: 大括号'{'所在行行最多容纳的字符数
+        tokens: 该属性适用的类型，例：CLASS_DEF,INTERFACE_DEF,METHOD_DEF,CTOR_DEF -->
+        <!--        <module name="LeftCurly">-->
+        <!--            <property name="option" value="nl" />-->
+        <!--        </module>-->
 
         <module name="LocalFinalVariableName" />
         <module name="LocalVariableName" />
@@ -67,15 +100,38 @@
             <message key="name.invalidPattern"
                 value="PackageName  ''{0}'' should fit ''{1}''format." />
         </module>
-        <module name="StaticVariableName" />
+        <module name="StaticVariableName">
+            <!--            <property name="format" value="(^[A-Z0-9_]{0,19}$)" />-->
+        </module>
+
+        <!-- classes and interfaces -->
         <module name="TypeName">
+            <property name="format" value="(^[A-Z][a-zA-Z0-9]{0,19}$)" />
             <property name="severity" value="warning" />
             <message key="name.invalidPattern" value="name ''{0}'' should fit ''{1}''format." />
         </module>
-        <module name="MemberName" />
-        <module name="MethodName" />
-        <module name="ParameterName " />
-        <module name="ConstantName" />
+
+        <!-- methods -->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z]*$" />
+        </module>
+        <!--        <property name="format" value="(^[a-z][a-zA-Z0-9]{0,19}$)" />-->
+        <!--        <property name="format" value="(^[a-z]([a-Z0-9]+[A-Z]?)*$)"/>-->
+
+        <!-- non-static fields -->
+        <module name="MemberName">
+            <!--            <property name="format" value="(^m[a-z][a-z0-9][a-zA-Z0-9]{0,19}+$)|(^[a-z][a-z0-9][a-zA-Z0-9]{0,19}$)" />-->
+        </module>
+
+        <!-- parameters -->
+        <module name="ParameterName">
+            <property name="format" value="(^[a-z][a-zA-Z0-9_]{0,19}$)" />
+        </module>
+
+        <!-- constants (static,  final fields) -->
+        <module name="ConstantName">
+            <property name="format" value="(^[A-Z0-9_]{0,19}$)" />
+        </module>
 
         <!-- 检查代码块的左花括号的放置位置 -->
         <module name="LeftCurly">
@@ -121,7 +177,7 @@
         <module name="SimplifyBooleanReturn" />
 
         <!--检查每个变量是否使用一行一条语句进行声明-->
-        <!--<module name="MultipleVariableDeclarations" />-->
+        <module name="MultipleVariableDeclarations" />
 
         <!--检查数组定义的风格，默认java风格-->
         <module name="ArrayTypeStyle" />
@@ -208,7 +264,7 @@
 
         <!-- 返回个数 -->
         <module name="ReturnCount">
-            <property name="max" value="15" />
+            <property name="max" value="10" />
             <property name="maxForVoid" value="15" />
             <property name="format" value="^$" />
         </module>
