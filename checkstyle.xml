@@ -112,9 +112,9 @@
         </module>
 
         <!-- methods -->
-        <module name="MethodName">
-            <property name="format" value="^[a-z][a-zA-Z]*$" />
-        </module>
+        <!--        <module name="MethodName">-->
+        <!--            <property name="format" value="^[a-z][a-zA-Z]*$" />-->
+        <!--        </module>-->
         <!--        <property name="format" value="(^[a-z][a-zA-Z0-9]{0,19}$)" />-->
         <!--        <property name="format" value="(^[a-z]([a-Z0-9]+[A-Z]?)*$)"/>-->
 
@@ -129,9 +129,9 @@
         </module>
 
         <!-- constants (static,  final fields) -->
-        <module name="ConstantName">
-            <property name="format" value="(^[A-Z0-9_]{0,19}$)" />
-        </module>
+        <!--        <module name="ConstantName">-->
+        <!--            <property name="format" value="(^[A-Z0-9_]{0,19}$)" />-->
+        <!--        </module>-->
 
         <!-- 检查代码块的左花括号的放置位置 -->
         <module name="LeftCurly">
