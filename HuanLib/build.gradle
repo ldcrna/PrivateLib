@@ -38,7 +38,7 @@ publishing {
             //You can either define these here or get them from project conf elsewhere
             artifactId 'imageload'
             version '0.0.6-SNAPSHOT'
-            artifact "$buildDir/outputs/aar/HuanLib.aar"
+            artifact "$buildDir/outputs/aar/HuanLib-release.aar"
             //aar artifact you want to publish //generate pom nodes for dependencies
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
