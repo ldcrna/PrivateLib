@@ -1,7 +1,6 @@
 
 package com.pengfei.huanlib.system;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,7 +11,6 @@ import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.Keep;
-import androidx.core.app.ActivityCompat;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -261,50 +259,50 @@ public final class DeviceUtil {
      *
      * @return
      */
-    public static String getProvider() {
-        String provider = "未知";
-        try {
-            TelephonyManager telephonyManager =
-                (TelephonyManager) getApplication().getSystemService(Context.TELEPHONY_SERVICE);
-            if (ActivityCompat.checkSelfPermission(mContext,
-                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                // ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                // public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                // int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return "获取权限失败";
-            }
-            String iMSI = telephonyManager.getSubscriberId();
-            if (iMSI == null) {
-                if (TelephonyManager.SIM_STATE_READY == telephonyManager.getSimState()) {
-                    String operator = telephonyManager.getSimOperator();
-                    if (operator != null) {
-                        if ("46000".equals(operator) || "46002".equals(operator) || "46007".equals(operator)) {
-                            provider = "中国移动";
-                        } else if ("46001".equals(operator)) {
-                            provider = "中国联通";
-                        } else if ("46003".equals(operator)) {
-                            provider = "中国电信";
-                        }
-                    }
-                }
-            } else {
-                if (iMSI.startsWith("46000") || iMSI.startsWith("46002") || iMSI.startsWith("46007")) {
-                    provider = "中国移动";
-                } else if (iMSI.startsWith("46001")) {
-                    provider = "中国联通";
-                } else if (iMSI.startsWith("46003")) {
-                    provider = "中国电信";
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return provider;
-    }
+//    public static String getProvider() {
+//        String provider = "未知";
+//        try {
+//            TelephonyManager telephonyManager =
+//                (TelephonyManager) getApplication().getSystemService(Context.TELEPHONY_SERVICE);
+//            if (ActivityCompat.checkSelfPermission(mContext,
+//                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                // ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                // public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                // int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//                return "获取权限失败";
+//            }
+//            String iMSI = telephonyManager.getSubscriberId();
+//            if (iMSI == null) {
+//                if (TelephonyManager.SIM_STATE_READY == telephonyManager.getSimState()) {
+//                    String operator = telephonyManager.getSimOperator();
+//                    if (operator != null) {
+//                        if ("46000".equals(operator) || "46002".equals(operator) || "46007".equals(operator)) {
+//                            provider = "中国移动";
+//                        } else if ("46001".equals(operator)) {
+//                            provider = "中国联通";
+//                        } else if ("46003".equals(operator)) {
+//                            provider = "中国电信";
+//                        }
+//                    }
+//                }
+//            } else {
+//                if (iMSI.startsWith("46000") || iMSI.startsWith("46002") || iMSI.startsWith("46007")) {
+//                    provider = "中国移动";
+//                } else if (iMSI.startsWith("46001")) {
+//                    provider = "中国联通";
+//                } else if (iMSI.startsWith("46003")) {
+//                    provider = "中国电信";
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return provider;
+//    }
 
     public static String getLocalIpAddress() {
         String ipaddress = null;
