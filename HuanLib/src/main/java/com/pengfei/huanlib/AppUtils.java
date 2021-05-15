@@ -89,7 +89,7 @@ public final class AppUtils {
      * @return String
      */
     public static String getAppVersionName(Context context) {
-        PackageInfo pi = null;
+        PackageInfo pi;
         try {
             PackageManager pm = context.getPackageManager();
             pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_CONFIGURATIONS);
@@ -145,7 +145,7 @@ public final class AppUtils {
     /**
      * http://stackoverflow.com/questions/3495890/how-can-i-put-a-listview-into-a-scrollview-without-it-collapsing/3495908#3495908
      *
-     * @param listView
+     * @param listView listView
      */
     public static void setListViewHeightBasedOnChildrenExtend(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -170,9 +170,8 @@ public final class AppUtils {
     }
 
     public static String getChannel(Context context) {
-        String channel = "test";
         try {
-            channel = context.getPackageManager()
+            String channel = context.getPackageManager()
                 .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData
                     .getString("BaiduMobAd_CHANNEL");
             if (TextUtils.isEmpty(channel)) {

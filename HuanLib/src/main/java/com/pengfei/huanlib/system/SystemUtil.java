@@ -17,8 +17,14 @@ import androidx.annotation.NonNull;
  * @author wanghuanlong
  */
 @Keep
-public class SystemUtil {
+public final class SystemUtil {
+    /**
+     * TAG
+     */
     private static final String TAG = "SystemUtil";
+
+    private SystemUtil() {
+    }
 
     /**
      * 打开Wifi网络设置界面
@@ -54,12 +60,24 @@ public class SystemUtil {
         }
     }
 
+    /**
+     * 发送邮箱
+     *
+     * @param context context
+     * @param email email
+     */
     public static void sendMail(Context context, String email) {
         Uri uri = Uri.parse("mailto:" + email);
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         context.startActivity(Intent.createChooser(intent, "请选择发送邮件的应用"));
     }
 
+    /**
+     * 跳转QQ
+     *
+     * @param mActivity mActivity
+     * @param qqNum qqNum
+     */
     public static void jumpQQ(Activity mActivity, String qqNum) {
         if (mActivity == null) {
             return;
@@ -72,6 +90,13 @@ public class SystemUtil {
         }
     }
 
+    /**
+     * 复制文字
+     *
+     * @param mActivity mActivity
+     * @param text text
+     * @return 是否成功
+     */
     @SuppressLint("NewAPi")
     public static boolean copyLink(Context mActivity, String text) {
         ClipboardManager cm = (ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
