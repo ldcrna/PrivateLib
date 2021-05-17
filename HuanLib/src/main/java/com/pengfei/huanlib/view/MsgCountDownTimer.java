@@ -7,8 +7,8 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 /**
- * 短信验证倒计时
- * 
+ * 短信验证倒计时.
+ *
  * @author wanghuanlong
  */
 @Keep

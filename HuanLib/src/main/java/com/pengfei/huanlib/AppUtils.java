@@ -58,7 +58,7 @@ public final class AppUtils {
     }
 
     /**
-     * 启动 Activity，防止多次点击
+     * 启动 Activity，防止多次点击.
      *
      * @param mActivity mActivity
      * @param intent intent
@@ -70,8 +70,8 @@ public final class AppUtils {
     }
 
     /**
-     * 启动 Activity，防止多次点击
-     * 
+     * 启动 Activity，防止多次点击.
+     *
      * @param mActivity mActivity
      * @param intent intent
      * @param requestCode requestCode
@@ -83,8 +83,8 @@ public final class AppUtils {
     }
 
     /**
-     * 获取版本名
-     * 
+     * 获取版本名.
+     *
      * @param context context
      * @return String
      */
@@ -104,8 +104,8 @@ public final class AppUtils {
     }
 
     /**
-     * 获取版本号
-     * 
+     * 获取版本号.
+     *
      * @param context context
      */
     public static int getAppVersionCode(Context context) {
@@ -143,7 +143,7 @@ public final class AppUtils {
     }
 
     /**
-     * http://stackoverflow.com/questions/3495890/how-can-i-put-a-listview-into-a-scrollview-without-it-collapsing/3495908#3495908
+     * http://stackoverflow.com/questions/3495890/how-can-i-put-a-listview-into-a-scrollview-without-it-collapsing/3495908#3495908.
      *
      * @param listView listView
      */

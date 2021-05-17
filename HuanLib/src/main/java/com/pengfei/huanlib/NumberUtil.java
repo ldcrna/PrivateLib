@@ -10,7 +10,6 @@ import java.text.NumberFormat;
 
 /**
  * @author MaTianyu
- * @date 2014-11-21
  */
 @Keep
 public final class NumberUtil {

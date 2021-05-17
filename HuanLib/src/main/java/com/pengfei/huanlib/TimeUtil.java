@@ -64,56 +64,60 @@ public final class TimeUtil {
         }
 
         if (timestamp < 60 * 60) {
-            return (int) Math.floor((timestamp / 60)) + "分钟";
+            return (int) Math.floor((timestamp / 60.f)) + "分钟";
         }
 
         if (timestamp < 60 * 60 * 24) {
-            return (int) Math.floor((timestamp / (60 * 60))) + "小时";
+            return (int) Math.floor((timestamp / (60 * 60.f))) + "小时";
         }
 
         if (timestamp < 60 * 60 * 24 * 7) {
-            return (int) Math.floor((timestamp / (60 * 60 * 24))) + "天";
+            return (int) Math.floor((timestamp / (60 * 60 * 24.f))) + "天";
         }
 
         if (timestamp < 60 * 60 * 24 * 7 * 30) {
-            return (int) Math.floor((timestamp / (60 * 60 * 24 * 7))) + "周";
+            return (int) Math.floor((timestamp / (60 * 60 * 24 * 7.f))) + "周";
         }
 
         if (timestamp < 60 * 60 * 24 * 7 * 30 * 12) {
-            return (int) Math.floor((timestamp / (60 * 60 * 24 * 7 * 30))) + "月";
+            return (int) Math.floor((timestamp / (60 * 60 * 24 * 7 * 30.f))) + "月";
         }
 
-        return (int) Math.floor((timestamp / (60 * 60 * 24 * 7 * 30 * 12))) + "年";
+        return (int) Math.floor((timestamp / (60 * 60 * 24 * 7 * 30 * 12.f))) + "年";
     }
 
     private static void calculateTime(StringBuffer sb, long time) {
-        long mill = (long) Math.ceil(time / 1000); // 秒前
+        // 秒前
+        long mill = (long) Math.ceil(time / 1000.f);
 
-        long minute = (long) Math.ceil(time / 60 / 1000.0f); // 分钟前
+        // 分钟前
+        long minute = (long) Math.ceil(time / 60.f / 1000.0f);
 
-        long hour = (long) Math.ceil(time / 60 / 60 / 1000.0f); // 小时
+        // 小时
+        long hour = (long) Math.ceil(time / 60.f / 60 / 1000.0f);
 
-        long day = (long) Math.ceil(time / 24 / 60 / 60 / 1000.0f); // 天前
+        // 天前
+        long day = (long) Math.ceil(time / 24.f / 60 / 60 / 1000.0f);
 
         if (day - 1 > 0) {
-            sb.append(day + "天");
+            sb.append(day).append("天");
         } else if (hour - 1 > 0) {
             if (hour >= 24) {
                 sb.append("1天");
             } else {
-                sb.append(hour + "小时");
+                sb.append(hour).append("小时");
             }
         } else if (minute - 1 > 0) {
             if (minute == 60) {
                 sb.append("1小时");
             } else {
-                sb.append(minute + "分钟");
+                sb.append(minute).append("分钟");
             }
         } else if (mill - 1 > 0) {
             if (mill == 60) {
                 sb.append("1分钟");
             } else {
-                sb.append(mill + "秒");
+                sb.append(mill).append("秒");
             }
         } else {
             sb.append("刚刚");
@@ -133,8 +137,7 @@ public final class TimeUtil {
     public static Date strToDate(String strDate) {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT_2);
         ParsePosition pos = new ParsePosition(0);
-        Date date = formatter.parse(strDate, pos);
-        return date;
+        return formatter.parse(strDate, pos);
     }
 
     public static String dateLongToStr(long time) {
@@ -176,8 +179,7 @@ public final class TimeUtil {
     public static int getCurrentMonth() {
         final Calendar c = Calendar.getInstance();
         c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
-        int month = c.get(Calendar.MONTH) + 1;
-        return month;
+        return c.get(Calendar.MONTH) + 1;
     }
 
     public static String getShortDate(String dateStr, int type) {
@@ -200,18 +202,14 @@ public final class TimeUtil {
         boolean isSameDate = false;
         if (!TextUtils.isEmpty(date1) && !TextUtils.isEmpty(date2)) {
             String[] dates2 = date2.split(" ");
-            if (date1.equals(dates2[0])) {
-                isSameDate = true;
-            } else {
-                isSameDate = false;
-            }
+            isSameDate = date1.equals(dates2[0]);
 
         }
         return isSameDate;
     }
 
     /**
-     * 将时间转换为时间戳
+     * 将时间转换为时间戳.
      */
     public static String dateToStamp(String s) {
         String res = "";
@@ -228,7 +226,7 @@ public final class TimeUtil {
     }
 
     /**
-     * 将时间转换为时间戳
+     * 将时间转换为时间戳.
      */
     public static long dateToLong(String s) {
         long ts = 0;
@@ -256,11 +254,13 @@ public final class TimeUtil {
     }
 
     public static long stringToLong(String strTime, String formatType) throws ParseException {
-        Date date = stringToDate(strTime, formatType);  // String类型转成date类型
+        // String类型转成date类型
+        Date date = stringToDate(strTime, formatType);
         if (date == null) {
             return 0;
         } else {
-            long currentTime = dateToLong(date);  // date类型转成long类型
+            // date类型转成long类型
+            long currentTime = dateToLong(date);
             return currentTime;
         }
     }
@@ -281,9 +281,12 @@ public final class TimeUtil {
     }
 
     public static Date longToDate(long currentTime, String formatType) throws ParseException {
-        Date dateOld = new Date(currentTime); // 根据long类型的毫秒数生命一个date类型的时间
-        String sDateTime = dateToString(dateOld, formatType); // 把date类型的时间转换为string
-        Date date = stringToDate(sDateTime, formatType); // 把String类型转换为Date类型
+        // 根据long类型的毫秒数生命一个date类型的时间
+        Date dateOld = new Date(currentTime);
+        // 把date类型的时间转换为string
+        String sDateTime = dateToString(dateOld, formatType);
+        // 把String类型转换为Date类型
+        Date date = stringToDate(sDateTime, formatType);
         return date;
     }
 
@@ -300,7 +303,7 @@ public final class TimeUtil {
     }
 
     /**
-     * 两个时间之间相差距离多少天
+     * 两个时间之间相差距离多少天.
      *
      * @param str1 时间参数 1：
      * @param str2 时间参数 2：
@@ -330,7 +333,7 @@ public final class TimeUtil {
     }
 
     /**
-     * 两个时间相差距离多少天多少小时多少分多少秒
+     * 两个时间相差距离多少天多少小时多少分多少秒.
      *
      * @param str1 时间参数 1 格式：1990-01-01 12:00:00
      * @param str2 时间参数 2 格式：2009-01-01 12:00:00
@@ -367,7 +370,7 @@ public final class TimeUtil {
     }
 
     /**
-     * 两个时间相差距离多少天多少小时多少分多少秒
+     * 两个时间相差距离多少天多少小时多少分多少秒.
      *
      * @param str1 时间参数 1 格式：1990-01-01 12:00:00
      * @param str2 时间参数 2 格式：2009-01-01 12:00:00
@@ -490,6 +493,7 @@ public final class TimeUtil {
         ParsePosition pos = new ParsePosition(0);
         Date date = formatter.parse(d + " " + time, pos);
 
+        assert date != null;
         return date.getTime();
     }
 }

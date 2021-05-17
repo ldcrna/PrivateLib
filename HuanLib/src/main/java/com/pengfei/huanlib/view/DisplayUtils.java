@@ -97,7 +97,7 @@ public final class DisplayUtils {
 
     /**
      * 隐藏键盘
-     * 
+     *
      * @param activity activity
      */
     public static void closeKeyBoard(Activity activity) {

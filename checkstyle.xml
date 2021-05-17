@@ -12,6 +12,10 @@
         <property name="severity" value="warning" />
     </module>
 
+    <module name="SuppressionFilter">
+        <property name="file" value="${checkStyleConfigDir}/checkstyle_suppressions.xml" />
+    </module>
+
     <!-- 检查源码中没有制表符（'\t'） -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="true" />
@@ -111,16 +115,8 @@
             <message key="name.invalidPattern" value="name ''{0}'' should fit ''{1}''format." />
         </module>
 
-        <!-- methods -->
-        <!--        <module name="MethodName">-->
-        <!--            <property name="format" value="^[a-z][a-zA-Z]*$" />-->
-        <!--        </module>-->
-        <!--        <property name="format" value="(^[a-z][a-zA-Z0-9]{0,19}$)" />-->
-        <!--        <property name="format" value="(^[a-z]([a-Z0-9]+[A-Z]?)*$)"/>-->
-
-        <!-- non-static fields -->
-        <module name="MemberName">
-            <!--            <property name="format" value="(^m[a-z][a-z0-9][a-zA-Z0-9]{0,19}+$)|(^[a-z][a-z0-9][a-zA-Z0-9]{0,19}$)" />-->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$" />
         </module>
 
         <!-- parameters -->
@@ -128,10 +124,12 @@
             <property name="format" value="(^[a-z][a-zA-Z0-9_]{0,19}$)" />
         </module>
 
-        <!-- constants (static,  final fields) -->
-        <!--        <module name="ConstantName">-->
-        <!--            <property name="format" value="(^[A-Z0-9_]{0,19}$)" />-->
-        <!--        </module>-->
+        <!-- Each of these naming modules validates identifiers for particular
+                code elements. -->
+        <!-- See http://checkstyle.sourceforge.net/config_naming.html -->
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9\$]*(_[A-Z0-9\$]+)*$" />
+        </module>
 
         <!-- 检查代码块的左花括号的放置位置 -->
         <module name="LeftCurly">
@@ -218,8 +216,12 @@
 
         <!-- 检查是否有多余的修饰符，例如：接口中的方法不必使用public、abstract修饰  -->
         <module name="RedundantModifier" />
-        <module name="AvoidNestedBlocks" />
-        <module name="EmptyBlock" />
+        <module name="AvoidNestedBlocks">
+            <property name="allowInSwitchCase" value="true" />
+        </module>
+        <module name="EmptyBlock">
+            <property name="option" value="text" />
+        </module>
         <module name="LeftCurly" />
         <module name="NeedBraces" />
         <module name="RightCurly" />
@@ -270,6 +272,69 @@
         </module>
         <module name="SuperClone" />
         <module name="SuperFinalize" />
+        <!-- Checks for common coding problems. -->
+        <!-- See http://checkstyle.sourceforge.net/config_coding.html -->
+        <module name="CovariantEquals" />
+        <module name="DefaultComesLast" />
+
+        <module name="NoClone" />
+        <module name="NoFinalizer" />
+        <module name="OneStatementPerLine" />
+
+        <module name="UnnecessaryParentheses" />
+
+        <!-- Checks for class design. -->
+        <!-- See http://checkstyle.sourceforge.net/config_design.html -->
+
+        <!-- Allow common trailing comments used to describe suppressions -->
+        <module name="TrailingComment">
+            <property name="legalComment" value="^Public API.?$|^NOPMD.*$" />
+        </module>
+
+        <!-- Checks that the outer type name and the file name match. -->
+        <!-- See http://checkstyle.sourceforge.net/config_misc.html#OuterTypeFilename -->
+        <module name="OuterTypeFilename" />
+
+
+        <!-- Validates Javadoc comments to help ensure they are well formed. -->
+        <!-- See http://checkstyle.sourceforge.net/config_javadoc.html#JavadocStyle -->
+        <module name="JavadocStyle" />
+
+        <!-- Prevent importing JUnit 3 classes and Assert methods -->
+        <module name="IllegalImport">
+            <property name="illegalPkgs" value="junit" />
+            <message key="import.illegal"
+                value="Import from illegal package - {0}. Tests are written in JUnit 4, use org.junit.* equivalents." />
+        </module>
+        <!-- Prevent importing Mockito matchers directly -->
+        <module name="IllegalImport">
+            <property name="illegalPkgs" value="org.mockito.internal" />
+            <message key="import.illegal"
+                value="Import from illegal package - {0}. Use org.mockito.Matchers to instantiate argument matchers." />
+        </module>
+    </module>
+
+    <!-- Trailing spaces -->
+    <module name="RegexpSingleline">
+        <property name="format" value="\s+$" />
+        <property name="message" value="Line has trailing spaces." />
+    </module>
+
+    <!-- Ensure trailling newline for compatibility -->
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf" />
+    </module>
+
+    <!-- Space after 'for' and 'if' -->
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*(for|if)\b[^ ]" />
+        <property name="message" value="Space needed before opening parenthesis." />
+    </module>
+
+    <!-- For each spacing -->
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*for \(.*?([^ ]:|:[^ ])" />
+        <property name="message" value="Space needed around ':' character." />
     </module>
 
 </module>

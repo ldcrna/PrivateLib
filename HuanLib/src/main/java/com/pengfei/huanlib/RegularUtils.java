@@ -11,12 +11,12 @@ import java.util.regex.Pattern;
  */
 @Keep
 public class RegularUtils {
+
     /**
-     * <手机号码判断>
+     * 是否是手机号.
      *
-     * @param tel
-     * @return
-     * @see [类、类#方法、类#成员]
+     * @param tel 手机号字符串
+     * @return 是否是手机号
      */
     public static boolean isTel(String tel) {
         String str = "^[0-9]{11}$";
@@ -32,13 +32,12 @@ public class RegularUtils {
         return m.matches();
     }
 
+
     /**
-     * <邮箱判断>
-     * <功能详细描述>
+     * 是否是正确邮箱.
      *
-     * @param email
-     * @return
-     * @see [类、类#方法、类#成员]
+     * @param email  邮箱
+     * @return 是否是正确
      */
     public static boolean isEmail(String email) {
         String str =

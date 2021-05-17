@@ -12,7 +12,7 @@ public final class DoubleClickUtils {
     }
 
     /**
-     * downTime
+     * downTime.
      */
     private static long downTime;
 
